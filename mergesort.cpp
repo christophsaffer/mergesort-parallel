@@ -3,5 +3,5 @@
 #include <iostream>
 #include <vector>
 
-void mergesort(double* a){
+void mergesort(int* a){
 }
