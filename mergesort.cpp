@@ -33,8 +33,16 @@ std::vector<int> mergesort(std::vector<int> a){
 	if (a.size() > 2){
 		std::vector<int> l(a.begin(), a.begin() + (a.size()/2));
 		std::vector<int> r(a.begin() + (a.size()/2), a.end());
-		l = mergesort(l);
-		r = mergesort(r);
+		#pragma omp parallel
+		{
+			#pragma omp sections
+			{
+				#pragma omp section 
+				l = mergesort(l);
+				#pragma omp section
+				r = mergesort(r);
+			}
+		}
 		return merge(l, r);
 	} else {
 		if (a.size() == 1) {
