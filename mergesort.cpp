@@ -30,7 +30,7 @@ std::vector<int> merge(std::vector<int> list_l, std::vector<int> list_r){
 
 std::vector<int> mergesort(std::vector<int> a){
 
-	if (a.size() > 2){
+	if (a.size() > 1){
 		std::vector<int> l(a.begin(), a.begin() + (a.size()/2));
 		std::vector<int> r(a.begin() + (a.size()/2), a.end());
 		#pragma omp parallel
@@ -45,17 +45,7 @@ std::vector<int> mergesort(std::vector<int> a){
 		}
 		return merge(l, r);
 	} else {
-		if (a.size() == 1) {
-			return a;
-		} else {
-			if (a[0] < a[1]){
-				return a;
-			} else {
-				std::swap(a[0], a[1]);
-				return a;
-			}
-
-		}
+		return a;
 	}
 
 }
